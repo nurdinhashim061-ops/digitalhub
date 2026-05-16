@@ -6,6 +6,7 @@
     <title>DigitalHub | Soko la Bidhaa za Kidijitali</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
 <body>
 
@@ -131,9 +132,15 @@
                         <label>Maelezo Mafupi</label>
                         <textarea id="prod-desc" rows="3" placeholder="Eleza kwa ufupi mteja atapata nini..." required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label><i class="fa-solid fa-image"></i> Picha ya Bidhaa (Jpg/Png)</label>
-                        <input type="file" id="prod-cover" accept="image/*" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-image"></i> Picha ya Kava (Jpg/Png)</label>
+                            <input type="file" id="prod-cover" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-file-shield"></i> Faili la Bidhaa (Zip, Pdf, Script...)</label>
+                            <input type="file" id="prod-file" accept=".zip,.rar,.pdf,.txt,.docx,.js,.html,.css,.php" required>
+                        </div>
                     </div>
                     <button type="submit" id="submit-prod-btn" class="btn-primary w-100"><i class="fa-solid fa-rocket"></i> Weka Sokoni Sasa</button>
                 </form>
@@ -149,16 +156,13 @@
 
     <footer class="main-footer container">
         <hr class="footer-divider">
-        <div class="footer-legal">
-            <h3>Sheria, Vigezo & Sera ya Faragha (Privacy Policy)</h3>
-            <p>Karibu DigitalHub. Kwa kutumia jukwaa hili, unakubaliana na vigezo vifuatavyo:</p>
-            <ul>
-                <li><b>Maudhui Yanayoruhusiwa:</b> Ni marufuku kupost bidhaa zisizo zako, picha za ngono, au mifumo ya kitapeli. Bidhaa zote zinachujwa.</li>
-                <li><b>Vifurushi na Malipo:</b> Malipo ya Boost VIP (Tsh 5,000) na Premium Membership hayarudishwi (Non-refundable) mara tu yanapothibitishwa.</li>
-                <li><b>Sera ya Faragha:</b> DigitalHub inalinda barua pepe na taarifa zako za akaunti. Hatushirikishi taarifa zako na upande wa tatu wa kibiashara.</li>
-                <li><b>Wajibu wa Biashara:</b> Malipo ya bidhaa yanafanyika moja kwa moja kati ya mnunuzi na muuzaji kupitia WhatsApp. DigitalHub haihusiki na makubaliano ya nje ya jukwaa.</li>
-            </ul>
-            <p class="copyright">© 2026 DigitalHub. Haki zote zimehifadhiwa.</p>
+        <div class="footer-content" style="text-align: center; display: flex; flex-direction: column; gap: 10px; padding-bottom: 20px;">
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 15px; font-size: 12px;">
+                <a href="#" id="open-policy-btn" style="color: #0d9488; font-weight: 700; text-decoration: none;"><i class="fa-solid fa-shield-halved"></i> Sera ya Faragha & Sheria</a>
+                <a href="https://wa.me/255671020855?text=Habari%20Admin%20DigitalHub" target="_blank" style="color: #28a745; font-weight: 700; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Admin</a>
+                <a href="mailto:nurdinhashim061@gmail.com" style="color: #0284c7; font-weight: 700; text-decoration: none;"><i class="fa-solid fa-envelope"></i> Email Admin</a>
+            </div>
+            <p class="copyright" style="margin-top: 5px; font-size: 11px; color: #999;">© 2026 DigitalHub. Haki zote zimehifadhiwa.</p>
         </div>
     </footer>
 

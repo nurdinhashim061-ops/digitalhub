@@ -38,28 +38,35 @@
             </div>
             
             <div class="services-content" id="services-content">
-                <p class="services-intro">DigitalHub ni soko huru na salama la kimataifa namba moja Tanzania linalowaunganisha watengenezaji wa bidhaa za kidijitali na wanunuzi kwa mfumo wa kiotomatiki.</p>
+                <p class="services-intro">DigitalHub ni soko huru na salama linalowaunganisha wabunifu na wanunuzi wa bidhaa za kidijitali nchini Tanzania kwa urahisi kupitia WhatsApp.</p>
                 
                 <div class="services-grid">
                     <div class="service-item">
-                        <i class="fa-solid fa-bolt-lightning text-teal"></i>
+                        <i class="fa-solid fa-comments text-teal"></i>
                         <div>
-                            <strong>1. Uhakiki wa Papo Hapo (Commission 10%)</strong>
-                            <p>Ukilipia bidhaa yoyote, mfumo unahakiki na kukupa link ya ku-download faili lako sekunde hiyo hiyo. Jukwaa linakata kamisheni ya 10% tu kwa kila mauzo, 90% inaenda kwa mbunifu.</p>
+                            <strong>1. Biashara ya Direct WhatsApp</strong>
+                            <p>Mteja akibonyeza 'Nunua', anapelekwa moja kwa moja kwenye WhatsApp ya muuzaji husika kukamilisha biashara na kupokea faili lake.</p>
                         </div>
                     </div>
                     <div class="service-item">
                         <i class="fa-solid fa-rectangle-ad text-teal"></i>
                         <div>
-                            <strong>2. Mabango ya Matangazo (Premium Banners)</strong>
-                            <p>Unahitaji trafiki kubwa? Kodisha nafasi ya bango kubwa juu ya soko ili bidhaa, huduma, au mitandao yako ionekane na maelfu ya wateja wanaoingia jukwaani kila siku.</p>
+                            <strong>2. Mabango ya Matangazo (Banners)</strong>
+                            <p>Kodisha nafasi ya bango kubwa juu ya soko ili kupata trafiki kubwa ya wanunuzi wanaoingia jukwaani kila siku.</p>
                         </div>
                     </div>
                     <div class="service-item">
                         <i class="fa-solid fa-fire text-teal"></i>
                         <div>
                             <strong>3. Kukuza Bidhaa (Boost VIP)</strong>
-                            <p>Iongezee nguvu bidhaa yako kwa kuifanya iwe ya VIP (Boost) kwa Tsh 5,000 tu kwa wiki. Bidhaa yako itakaa juu kabisa ya soko na kupata nembo ya moto ili kuvuta wanunuzi haraka.</p>
+                            <p>Iongezee nguvu bidhaa yako kwa kuifanya iwe ya VIP kwa Tsh 5,000 tu kwa wiki ili ikae juu kabisa ya soko na kupata nembo ya moto.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-gem text-teal"></i>
+                        <div>
+                            <strong>4. Vifurushi vya Premium (Uanachama)</strong>
+                            <p>Kila mtumiaji ana haki ya kupost hadi bidhaa 3 bure. Ili kupost zaidi, unajiunga na Premium: Tsh 10,000 (Mwezi 1), Tsh 20,000 (Miezi 2), au Tsh 25,000 (Miezi 3 ya Ofa).</p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +76,7 @@
 
     <div class="tabs-container container">
         <button id="tab-explore" class="tab-btn active"><i class="fa-solid fa-compass"></i> Lipitie Soko</button>
-        <button id="tab-dashboard" class="tab-btn"><i class="fa-solid fa-wallet"></i> Wallet & Dashboard</button>
+        <button id="tab-dashboard" class="tab-btn"><i class="fa-solid fa-wallet"></i> Dashibodi Yako</button>
     </div>
 
     <main class="container">
@@ -78,12 +85,11 @@
             <div class="search-filter-box">
                 <div class="search-wrapper">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="search-input" placeholder="Tafuta vitabu, kozi, scripts, beats...">
+                    <input type="text" id="search-input" placeholder="Tafuta vitabu, scripts, templates, michoro...">
                 </div>
                 <div class="categories-scroller">
                     <button class="cat-chip active" onclick="filterCategory('all')">Zote</button>
                     <button class="cat-chip" onclick="filterCategory('ebook')"><i class="fa-solid fa-book"></i> Vitabu (PDF)</button>
-                    <button class="cat-chip" onclick="filterCategory('course')"><i class="fa-solid fa-video"></i> Kozi/Video</button>
                     <button class="cat-chip" onclick="filterCategory('script')"><i class="fa-solid fa-code"></i> Scripts</button>
                     <button class="cat-chip" onclick="filterCategory('graphics')"><i class="fa-solid fa-palette"></i> Graphics</button>
                     <button class="cat-chip" onclick="filterCategory('other')"><i class="fa-solid fa-star"></i> Nyinginezo</button>
@@ -95,31 +101,22 @@
         </section>
 
         <section id="dashboard-section" class="page-section" style="display: none;">
-            <div class="wallet-card">
-                <div class="wallet-info">
-                    <span>Salio Lako la Mauzo (Baada ya 10% ya Jukwaa)</span>
-                    <h2 id="wallet-balance">Tsh 0/=</h2>
-                </div>
-                <button id="withdraw-btn" class="btn-primary btn-withdraw"><i class="fa-solid fa-money-bill-transfer"></i> Omba Kutoa Pesa</button>
-            </div>
-
             <div class="upload-box">
-                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Pandisha Bidhaa Mpya ya Kidijitali</h3>
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Pandisha Bidhaa Mpya</h3>
                 <form id="upload-form">
                     <div class="form-group">
                         <label>Jina la Bidhaa</label>
-                        <input type="text" id="prod-title" placeholder="Mf: Kozi Kamili ya JavaScript kwa Kiswahili" required>
+                        <input type="text" id="prod-title" placeholder="Mf: Kitabu cha Mbinu za Coding" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Bei ya Kuuza (Tsh)</label>
+                            <label>Bei (Tsh)</label>
                             <input type="number" id="prod-price" placeholder="Mf: 5000" required>
                         </div>
                         <div class="form-group">
                             <label>Kundi (Category)</label>
                             <select id="prod-category">
                                 <option value="ebook">Kitabu (Ebook/PDF)</option>
-                                <option value="course">Kozi / Video</option>
                                 <option value="script">Script / Code Template</option>
                                 <option value="graphics">Graphics / Assets</option>
                                 <option value="other">Nyinginezo</option>
@@ -127,18 +124,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Maelezo Mafupi kuhusu bidhaa hii</label>
+                        <label>Namba yako ya WhatsApp (Ianze na 255...)</label>
+                        <input type="number" id="prod-whatsapp" placeholder="Mf: 255671020855" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Maelezo Mafupi</label>
                         <textarea id="prod-desc" rows="3" placeholder="Eleza kwa ufupi mteja atapata nini..." required></textarea>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label><i class="fa-solid fa-image"></i> Picha ya Kava (Jpg/Png)</label>
-                            <input type="file" id="prod-cover" accept="image/*" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fa-solid fa-file-shield"></i> Faili Halisi la Bidhaa (PDF, ZIP, n.k.)</label>
-                            <input type="file" id="prod-file" required>
-                        </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-image"></i> Picha ya Bidhaa (Jpg/Png)</label>
+                        <input type="file" id="prod-cover" accept="image/*" required>
                     </div>
                     <button type="submit" id="submit-prod-btn" class="btn-primary w-100"><i class="fa-solid fa-rocket"></i> Weka Sokoni Sasa</button>
                 </form>
@@ -150,8 +145,22 @@
                     </div>
             </div>
         </section>
-
     </main>
+
+    <footer class="main-footer container">
+        <hr class="footer-divider">
+        <div class="footer-legal">
+            <h3>Sheria, Vigezo & Sera ya Faragha (Privacy Policy)</h3>
+            <p>Karibu DigitalHub. Kwa kutumia jukwaa hili, unakubaliana na vigezo vifuatavyo:</p>
+            <ul>
+                <li><b>Maudhui Yanayoruhusiwa:</b> Ni marufuku kupost bidhaa zisizo zako, picha za ngono, au mifumo ya kitapeli. Bidhaa zote zinachujwa.</li>
+                <li><b>Vifurushi na Malipo:</b> Malipo ya Boost VIP (Tsh 5,000) na Premium Membership hayarudishwi (Non-refundable) mara tu yanapothibitishwa.</li>
+                <li><b>Sera ya Faragha:</b> DigitalHub inalinda barua pepe na taarifa zako za akaunti. Hatushirikishi taarifa zako na upande wa tatu wa kibiashara.</li>
+                <li><b>Wajibu wa Biashara:</b> Malipo ya bidhaa yanafanyika moja kwa moja kati ya mnunuzi na muuzaji kupitia WhatsApp. DigitalHub haihusiki na makubaliano ya nje ya jukwaa.</li>
+            </ul>
+            <p class="copyright">© 2026 DigitalHub. Haki zote zimehifadhiwa.</p>
+        </div>
+    </footer>
 
     <div id="toast" class="toast-popup"></div>
 

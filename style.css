@@ -1,0 +1,510 @@
+/* ================= GLOBAL RESETS & STABILITY ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.5;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px; /* Imetanuka kutoka 600px ili kutoa nafasi PC */
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* ================= HEADER (NAVBAR) ================= */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px; /* Imetanuka pia */
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.logo {
+    color: #0f172a; /* Midnight Charcoal */
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-badge {
+    background-color: #e6f0fa;
+    color: #0d9488;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+/* ================= MABANGO (BANNERS) ================= */
+.banner-section {
+    margin-top: 15px;
+}
+
+.banner-placeholder-large {
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.banner-badge {
+    background-color: #0d9488;
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+}
+
+.banner-placeholder-large h2 {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.banner-placeholder-large p {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.btn-banner-action {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ================= SEHEMU YA HUDUMA (DROP ACCORDION) ================= */
+.services-box {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.services-box h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.arrow-icon {
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotate {
+    transform: rotate(180deg);
+}
+
+.services-content {
+    display: none; /* Inajificha yenyewe mwanzoni */
+    margin-top: 12px;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 12px;
+}
+
+.services-intro {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.service-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.service-item i {
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.text-teal { color: #0d9488; }
+
+.service-item strong {
+    font-size: 12px;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.service-item p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* ================= TABS NAVIGATION ================= */
+.tabs-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tab-btn {
+    flex: 1;
+    background-color: white;
+    border: 1px solid #eaeaea;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tab-btn.active {
+    background-color: #0f172a;
+    color: white;
+    border-color: #0f172a;
+}
+
+/* ================= SEARCH & CATEGORIES ================= */
+.search-filter-box {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 15px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 13px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 10px 10px 10px 34px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    background-color: #fafafa;
+}
+
+#search-input:focus {
+    border-color: #0d9488;
+    background-color: white;
+}
+
+.categories-scroller {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    margin-top: 10px;
+    padding-bottom: 4px;
+}
+
+.categories-scroller::-webkit-scrollbar { display: none; }
+
+.cat-chip {
+    white-space: nowrap;
+    background-color: #f0f2f5;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+}
+
+.cat-chip.active {
+    background-color: #0f172a;
+    color: white;
+}
+
+/* ================= PRODUCTS GRID (SOKO) ================= */
+.products-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    padding-bottom: 40px;
+}
+
+.digital-card {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+}
+
+.digital-card-cover {
+    width: 75px;
+    height: 75px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.digital-card-info { flex-grow: 1; min-width: 0; }
+
+.badge-file-type {
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    background-color: #f0f2f5;
+    color: #666;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+.badge-file-type.ebook { background-color: #fff0f0; color: #dc3545; }
+.badge-file-type.course { background-color: #f0fff4; color: #28a745; }
+.badge-file-type.script { background-color: #f0fdfa; color: #0d9488; }
+
+.digital-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.digital-card-seller { font-size: 11px; color: #777; margin-bottom: 4px; }
+.digital-card-price { font-size: 14px; font-weight: 800; color: #28a745; }
+
+.btn-buy {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ================= WALLET CARD ================= */
+.wallet-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 16px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wallet-info h2 { font-size: 22px; font-weight: 800; }
+
+.btn-withdraw {
+    background-color: #0d9488;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Fomu na Orodha */
+.upload-box, .my-products-box {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 15px;
+}
+
+.upload-box h3, .my-products-box h3 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 6px;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.form-row { display: flex; gap: 10px; }
+.form-row .form-group { flex: 1; }
+.form-group label { font-size: 11px; font-weight: 700; color: #555; }
+.form-group input, .form-group select, .form-group textarea {
+    padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 12px; background-color: #fafafa; width: 100%;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #0d9488; background-color: white; }
+
+.btn-primary {
+    background-color: #0d9488; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; text-align: center;
+}
+
+/* ================= ORODHA YA USER + BUTTONS YA BOOST ================= */
+.my-prod-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.my-prod-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-boost-user {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.btn-delete-user {
+    background: none; border: none; color: #dc3545; font-size: 12px; cursor: pointer;
+}
+
+/* ================= MADWIDHI MENGINE ================= */
+.toast-popup {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; z-index: 200000; display: none; text-align: center; max-width: 280px;
+}
+
+.vip-tag {
+    position: absolute; top: -6px; right: 12px; background: linear-gradient(45deg, #ff8c00, #ff4500); color: white; font-size: 8px; font-weight: 900; padding: 2px 8px; border-radius: 10px; box-shadow: 0 2px 5px rgba(255,69,0,0.3);
+}
+/* ================= RESPONSIVE MEDIA QUERIES (PC & TABLET) ================= */
+@media (min-width: 768px) {
+    /* Gridi ya bidhaa inabadilika kutoka mstari mmoja kwenda kadi 3 kwa PC */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+    }
+    
+    /* Kadi inabadilika kuwa ya wima (Premium Grid Look) kwenye PC */
+    .digital-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+    
+    .digital-card-cover {
+        width: 100%;
+        height: 160px;
+        border-radius: 8px;
+    }
+    
+    .btn-buy {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+    }
+    
+    /* Sehemu ya Huduma inakaa pembeni kwa pembeni (Grid) */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}

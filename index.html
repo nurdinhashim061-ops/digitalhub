@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DigitalHub | Soko la Bidhaa za Kidijitali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <h1 class="logo"><i class="fa-solid fa-cubes-stacked"></i> DigitalHub</h1>
+            <div class="header-actions">
+                <span id="user-display-name" class="user-badge" style="display: none;"></span>
+                <button id="logoutBtn" class="btn-logout" style="display: none;"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <div class="banner-section container">
+        <div class="promo-banner" id="top-banner">
+            <div class="banner-placeholder-large">
+                <div class="banner-badge"><i class="fa-solid fa-bullhorn"></i> NAFASI YA TANGAZO</div>
+                <h2>Weka Bango Lako Hapa Lionekane na Vijana Elfu 10+ Kila Siku!</h2>
+                <p>Kuza biashara yako, chaneli yako ya YouTube, au huduma zako hapa. Wasiliana na Admin sasa hivi kupitia WhatsApp.</p>
+                <button class="btn-banner-action" onclick="window.open('https://wa.me/255671020855?text=Habari%20Admin,%20nahitaji%20kuweka%20bango%20DigitalHub', '_blank')"><i class="fa-brands fa-whatsapp"></i> Weka Bango Sasa</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="services-section container">
+        <div class="services-box">
+            <div class="services-header" id="toggle-services-btn">
+                <h3><i class="fa-solid fa-circle-info"></i> Kuhusu Huduma za DigitalHub</h3>
+                <i class="fa-solid fa-chevron-down arrow-icon" id="services-arrow"></i>
+            </div>
+            
+            <div class="services-content" id="services-content">
+                <p class="services-intro">DigitalHub ni soko huru na salama la kimataifa namba moja Tanzania linalowaunganisha watengenezaji wa bidhaa za kidijitali na wanunuzi kwa mfumo wa kiotomatiki.</p>
+                
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fa-solid fa-bolt-lightning text-teal"></i>
+                        <div>
+                            <strong>1. Uhakiki wa Papo Hapo (Commission 10%)</strong>
+                            <p>Ukilipia bidhaa yoyote, mfumo unahakiki na kukupa link ya ku-download faili lako sekunde hiyo hiyo. Jukwaa linakata kamisheni ya 10% tu kwa kila mauzo, 90% inaenda kwa mbunifu.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-rectangle-ad text-teal"></i>
+                        <div>
+                            <strong>2. Mabango ya Matangazo (Premium Banners)</strong>
+                            <p>Unahitaji trafiki kubwa? Kodisha nafasi ya bango kubwa juu ya soko ili bidhaa, huduma, au mitandao yako ionekane na maelfu ya wateja wanaoingia jukwaani kila siku.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-fire text-teal"></i>
+                        <div>
+                            <strong>3. Kukuza Bidhaa (Boost VIP)</strong>
+                            <p>Iongezee nguvu bidhaa yako kwa kuifanya iwe ya VIP (Boost) kwa Tsh 5,000 tu kwa wiki. Bidhaa yako itakaa juu kabisa ya soko na kupata nembo ya moto ili kuvuta wanunuzi haraka.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs-container container">
+        <button id="tab-explore" class="tab-btn active"><i class="fa-solid fa-compass"></i> Lipitie Soko</button>
+        <button id="tab-dashboard" class="tab-btn"><i class="fa-solid fa-wallet"></i> Wallet & Dashboard</button>
+    </div>
+
+    <main class="container">
+        
+        <section id="explore-section" class="page-section">
+            <div class="search-filter-box">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Tafuta vitabu, kozi, scripts, beats...">
+                </div>
+                <div class="categories-scroller">
+                    <button class="cat-chip active" onclick="filterCategory('all')">Zote</button>
+                    <button class="cat-chip" onclick="filterCategory('ebook')"><i class="fa-solid fa-book"></i> Vitabu (PDF)</button>
+                    <button class="cat-chip" onclick="filterCategory('course')"><i class="fa-solid fa-video"></i> Kozi/Video</button>
+                    <button class="cat-chip" onclick="filterCategory('script')"><i class="fa-solid fa-code"></i> Scripts</button>
+                    <button class="cat-chip" onclick="filterCategory('graphics')"><i class="fa-solid fa-palette"></i> Graphics</button>
+                    <button class="cat-chip" onclick="filterCategory('other')"><i class="fa-solid fa-star"></i> Nyinginezo</button>
+                </div>
+            </div>
+
+            <div id="products-grid" class="products-grid">
+                </div>
+        </section>
+
+        <section id="dashboard-section" class="page-section" style="display: none;">
+            <div class="wallet-card">
+                <div class="wallet-info">
+                    <span>Salio Lako la Mauzo (Baada ya 10% ya Jukwaa)</span>
+                    <h2 id="wallet-balance">Tsh 0/=</h2>
+                </div>
+                <button id="withdraw-btn" class="btn-primary btn-withdraw"><i class="fa-solid fa-money-bill-transfer"></i> Omba Kutoa Pesa</button>
+            </div>
+
+            <div class="upload-box">
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Pandisha Bidhaa Mpya ya Kidijitali</h3>
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label>Jina la Bidhaa</label>
+                        <input type="text" id="prod-title" placeholder="Mf: Kozi Kamili ya JavaScript kwa Kiswahili" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bei ya Kuuza (Tsh)</label>
+                            <input type="number" id="prod-price" placeholder="Mf: 5000" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kundi (Category)</label>
+                            <select id="prod-category">
+                                <option value="ebook">Kitabu (Ebook/PDF)</option>
+                                <option value="course">Kozi / Video</option>
+                                <option value="script">Script / Code Template</option>
+                                <option value="graphics">Graphics / Assets</option>
+                                <option value="other">Nyinginezo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Maelezo Mafupi kuhusu bidhaa hii</label>
+                        <textarea id="prod-desc" rows="3" placeholder="Eleza kwa ufupi mteja atapata nini..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-image"></i> Picha ya Kava (Jpg/Png)</label>
+                            <input type="file" id="prod-cover" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-file-shield"></i> Faili Halisi la Bidhaa (PDF, ZIP, n.k.)</label>
+                            <input type="file" id="prod-file" required>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit-prod-btn" class="btn-primary w-100"><i class="fa-solid fa-rocket"></i> Weka Sokoni Sasa</button>
+                </form>
+            </div>
+
+            <div class="my-products-box" style="margin-top: 25px;">
+                <h3>Bidhaa Zako Sokoni</h3>
+                <div id="my-products-list" class="my-products-list">
+                    </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast-popup"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

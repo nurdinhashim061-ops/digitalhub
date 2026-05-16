@@ -38,6 +38,71 @@ const ADMIN_EMAIL = "nurdinhashim061@gmail.com";
 let isRegisterMode = false; 
 
 // =========================================================================
+// 2B. MFUMO WA POPUP/ALERT WA KISASA (CUSTOM TOAST PRO)
+// =========================================================================
+function showToast(msg, type = "success") {
+    // Futa popup ya zamani kama ipo
+    const oldToast = document.getElementById("pro-toast-popup");
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement("div");
+    toast.id = "pro-toast-popup";
+    
+    // Rangi kulingana na aina ya ujumbe
+    let bgColor = "linear-gradient(135deg, #0d9488 0%, #115e59 100%)"; // Success (Kijani kibichi)
+    let icon = '<i class="fa-solid fa-circle-check" style="font-size: 18px;"></i>';
+    
+    if (type === "error") {
+        bgColor = "linear-gradient(135deg, #e11d48 0%, #9f1239 100%)"; // Error (Nyekundu)
+        icon = '<i class="fa-solid fa-circle-exclamation" style="font-size: 18px;"></i>';
+    } else if (type === "info") {
+        bgColor = "linear-gradient(135deg, #f59e0b 0%, #b45309 100%)"; // Info/Warning (Njano)
+        icon = '<i class="fa-solid fa-triangle-exclamation" style="font-size: 18px;"></i>';
+    }
+
+    // CSS ya muonekano wa Kisasa kabisa unaoelea
+    toast.style = `
+        position: fixed; 
+        top: 24px; 
+        right: 24px; 
+        background: ${bgColor}; 
+        color: white; 
+        padding: 12px 20px; 
+        border-radius: 10px; 
+        font-family: sans-serif; 
+        font-size: 13px; 
+        font-weight: 600; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+        z-index: 9999999; 
+        display: flex; 
+        align-items: center; 
+        gap: 12px; 
+        transform: translateY(-20px); 
+        opacity: 0; 
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    `;
+    
+    toast.innerHTML = `${icon} <span>${msg}</span>`;
+    document.body.appendChild(toast);
+
+    // Kuingia kwa urembo (Animation in)
+    setTimeout(() => {
+        toast.style.transform = "translateY(0)";
+        toast.style.opacity = "1";
+    }, 50);
+
+    // Kupotea automatic baada ya sekunde 3
+    setTimeout(() => {
+        toast.style.transform = "translateY(-20px)";
+        toast.style.opacity = "0";
+        setTimeout(() => { toast.remove(); }, 300);
+    }, 3500);
+}
+
+// Global exposure ili itumike popote
+window.showToast = showToast;
+
+// =========================================================================
 // 3. SEHEMU YA HUDUMA (ACCORDION TOGGLE MECHANISM)
 // =========================================================================
 const toggleBtn = document.getElementById("toggle-services-btn");
@@ -162,7 +227,7 @@ if (uploadForm) {
             if(limitCheck.msg === "limit_reached") {
                 showPremiumModal();
             } else {
-                alert(limitCheck.msg);
+                showToast(limitCheck.msg, "info");
             }
             return;
         }
@@ -176,7 +241,7 @@ if (uploadForm) {
         const coverFile = document.getElementById("prod-cover").files[0];
         const digitalFile = document.getElementById("prod-file").files[0];
 
-        if (!coverFile || !digitalFile) return alert("Tafadhali hakikisha umeweka picha ya kava NA faili la bidhaa!");
+        if (!coverFile || !digitalFile) return showToast("Tafadhali hakikisha umeweka picha ya kava NA faili la bidhaa!", "error");
 
         try {
             document.getElementById("submit-prod-btn").innerText = "Inapakia... Subiri...";
@@ -206,7 +271,7 @@ if (uploadForm) {
                         timestamp: new Date()
                     });
 
-                    showToast("Bidhaa na Faili lake zimewekwa sokoni!");
+                    showToast("Bidhaa na Faili lake zimewekwa sokoni kikamilifu!");
                     uploadForm.reset();
                     document.getElementById("submit-prod-btn").innerHTML = `<i class="fa-solid fa-rocket"></i> Weka Sokoni Sasa`;
                     loadProducts();
@@ -214,7 +279,7 @@ if (uploadForm) {
                 };
             };
         } catch (err) {
-            alert("Kosa la kuweka mzigo: " + err.message);
+            showToast("Kosa la kuweka mzigo: " + err.message, "error");
             document.getElementById("submit-prod-btn").innerHTML = `<i class="fa-solid fa-rocket"></i> Weka Sokoni Sasa`;
         }
     };
@@ -295,9 +360,10 @@ window.adminToggleBoost = async function(id, currentPriority) {
 };
 
 window.adminDeleteProduct = async function(id) {
+    // Tumetumia window.confirm hapa kwa sababu ni hatua kubwa ya kiusalama ya Admin kufuta faili
     if (confirm("Mkuu Nurdin, una uhakika wa kufuta kabisa bidhaa hii jukwaani?")) {
         await deleteDoc(doc(db, "products", id));
-        showToast("Bidhaa imefutwa kabisa!");
+        showToast("Bidhaa imefutwa kabisa na Admin!", "info");
         loadProducts();
         renderMyProducts();
     }
@@ -335,7 +401,7 @@ async function renderMyProducts() {
 }
 
 // =========================================================================
-// 10. AUTHENTICATION (GOOGLE + HYBRID EMAIL-PASSWORD SYSTEM)
+// 10. AUTHENTICATION (GOOGLE + HYBRID EMAIL-PASSWORD WITH USERNAME SYSTEM)
 // =========================================================================
 function createAuthOverlay() {
     const old = document.getElementById("auth-lock-overlay");
@@ -367,10 +433,17 @@ function createAuthOverlay() {
             </div>
 
             <form id="custom-auth-form" style="display:flex; flex-direction:column; gap:10px; text-align:left;">
+                
+                <div id="username-field-group" style="display:none; flex-direction:column; gap:4px;">
+                    <label style="font-size:11px; color:rgba(255,255,255,0.7);">Jina la Mtumiaji (Username)</label>
+                    <input type="text" id="auth-username" placeholder="mfano: nurdin_hashim" style="width:100%; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:#0f172a; color:white; font-size:12px; box-sizing:border-box;">
+                </div>
+
                 <div style="display:flex; flex-direction:column; gap:4px;">
                     <label style="font-size:11px; color:rgba(255,255,255,0.7);">Barua Pepe (Email)</label>
                     <input type="email" id="auth-email" placeholder="mfano@gmail.com" required style="width:100%; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:#0f172a; color:white; font-size:12px; box-sizing:border-box;">
                 </div>
+                
                 <div style="display:flex; flex-direction:column; gap:4px;">
                     <label style="font-size:11px; color:rgba(255,255,255,0.7);">Nenosiri (Password)</label>
                     <input type="password" id="auth-password" placeholder="******" required minlength="6" style="width:100%; padding:10px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:#0f172a; color:white; font-size:12px; box-sizing:border-box;">
@@ -395,7 +468,7 @@ function createAuthOverlay() {
         try {
             await signInWithPopup(auth, provider);
         } catch (err) {
-            alert("Ushindani wa Login: " + err.message);
+            showToast("Ushindani wa Login: " + err.message, "error");
         }
     };
 
@@ -403,6 +476,8 @@ function createAuthOverlay() {
     const switchLink = document.getElementById("switch-auth-mode");
     const switchText = document.getElementById("switch-text");
     const submitBtn = document.getElementById("custom-auth-btn");
+    const usernameGroup = document.getElementById("username-field-group");
+    const usernameInput = document.getElementById("auth-username");
     
     switchLink.onclick = (e) => {
         e.preventDefault();
@@ -411,10 +486,14 @@ function createAuthOverlay() {
             switchText.innerText = "Tayari una akaunti?";
             switchLink.innerText = "Ingia Hapa";
             submitBtn.innerText = "Tengeneza Akaunti Mpya";
+            usernameGroup.style.display = "flex"; // Onyesha input ya username
+            usernameInput.required = true;       // Weka kuwa ni lazima ijazwe
         } else {
             switchText.innerText = "Huna akaunti bado?";
             switchLink.innerText = "Jisajili Hapa";
             submitBtn.innerText = "Ingia Akauntini";
+            usernameGroup.style.display = "none"; // Ficha input ya username
+            usernameInput.required = false;       // Ondoa ulazima
         }
     };
 
@@ -424,24 +503,36 @@ function createAuthOverlay() {
         e.preventDefault();
         const email = document.getElementById("auth-email").value.trim();
         const password = document.getElementById("auth-password").value;
+        const username = usernameInput.value.trim();
 
         try {
             submitBtn.innerText = "Inaprosesi... Subiri...";
             if (isRegisterMode) {
-                // Tengeneza akaunti mpya
-                await createUserWithEmailAndPassword(auth, email, password);
-                showToast("Akaunti imetengenezwa kwa mafanikio!");
+                // 1. Tengeneza akaunti mpya Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Hifadhi details zake pamoja na Username aliyoandika kwenye Firestore
+                await addDoc(collection(db, "users"), {
+                    uid: user.uid,
+                    email: user.email,
+                    name: username, // Tunatumia username aliyojaza yeye
+                    createdAt: new Date()
+                });
+
+                showToast("Akaunti yako imetengenezwa kwa mafanikio mkuu!");
             } else {
                 // Ingia kwenye akaunti ya zamani
                 await signInWithEmailAndPassword(auth, email, password);
-                showToast("Umeingia kwa mafanikio!");
+                showToast("Umeingia jukwaani kwa mafanikio!");
             }
         } catch (err) {
             let errorMsg = err.message;
             if(err.code === "auth/email-already-in-use") errorMsg = "Barua pepe hii ishatumika na mtu mwingine!";
             if(err.code === "auth/invalid-credential") errorMsg = "Barua pepe au nenosiri si sahihi!";
             if(err.code === "auth/weak-password") errorMsg = "Nenosiri ni dhaifu mno, weka herufi zisizopungua 6!";
-            alert("Hitilafu: " + errorMsg);
+            
+            showToast(errorMsg, "error");
             submitBtn.innerText = isRegisterMode ? "Tengeneza Akaunti Mpya" : "Ingia Akauntini";
         }
     };
@@ -454,17 +545,22 @@ onAuthStateChanged(auth, async (user) => {
         const overlay = document.getElementById("auth-lock-overlay");
         if (overlay) overlay.remove();
 
-        // Kujaza jina la kuonyesha (Kama ametumia Email, tunakata sehemu ya mbele ya @ kuwa jina lake)
-        const displayName = user.displayName ? user.displayName : user.email.split('@')[0];
+        let finalName = user.displayName ? user.displayName : user.email.split('@')[0];
 
+        // Tafuta kama tuna jina lake la username tulilohifadhi kwenye Firestore
         try {
             const userQ = query(collection(db, "users"), where("uid", "==", user.uid));
             const userSnap = await getDocs(userQ);
-            if (userSnap.empty) {
+            
+            if (!userSnap.empty) {
+                const userData = userSnap.docs[0].data();
+                if(userData.name) finalName = userData.name; // Chukua lile jina alilojisajili nalo
+            } else {
+                // Kama ni akaunti ya Google mpya ambayo haipo kwenye users collection yetu bado
                 await addDoc(collection(db, "users"), {
                     uid: user.uid,
                     email: user.email,
-                    name: displayName,
+                    name: finalName,
                     createdAt: new Date()
                 });
             }
@@ -472,7 +568,7 @@ onAuthStateChanged(auth, async (user) => {
 
         const nameBadge = document.getElementById("user-display-name");
         const logoutBtn = document.getElementById("logoutBtn");
-        if(nameBadge) { nameBadge.innerText = displayName; nameBadge.style.display = "inline-block"; }
+        if(nameBadge) { nameBadge.innerText = finalName; nameBadge.style.display = "inline-block"; }
         if(logoutBtn) logoutBtn.style.display = "inline-block";
 
         loadProducts();
@@ -486,8 +582,10 @@ onAuthStateChanged(auth, async (user) => {
 const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
     logoutBtn.onclick = async () => {
+        // Tumetumia confirm hapa ili mtumiaji asibonyeze kwa makosa akatolewa nje ghafla
         if(confirm("Je, unataka kutoka kwenye akaunti yako?")) {
             await signOut(auth);
+            showToast("Umetoka kwenye akaunti yako vizuri.", "info");
             window.location.reload();
         }
     };
@@ -534,14 +632,6 @@ if (searchInput) {
     };
 }
 
-function showToast(msg) {
-    const toast = document.getElementById("toast");
-    if (!toast) return;
-    toast.innerText = msg;
-    toast.style.display = "block";
-    setTimeout(() => { toast.style.display = "none"; }, 3000);
-}
-
 // =========================================================================
 // 12. PRIVACY POLICY HIDDEN MODAL MECHANISM (POP-UP SYSTEM)
 // =========================================================================
@@ -566,7 +656,7 @@ if (openPolicyBtn) {
                     <p>Karibu DigitalHub. Kwa kutumia jukwaa hili, unakubaliana kikamilifu na vigezo na sheria zifuatazo:</p>
                     <div>
                         <b style="color:#0f172a; display:block; margin-bottom:2px;">1. Maudhui Yanayoruhusiwa</b>
-                        Ni marufuku kabisa kupost bidhaa zisizo zako, picha za ngono, programu za udukuzi, au mifumo ya kitapeli. Bidhaa zote zisizokidhi vigezo zitafutwa na Admin mara moja bila taarifa.
+                        Ni marufuku kabisa kupost bidhaa zisizo zako, picha za ngono, programu za udukuzi, au mifumo ya kitapeli. Bidhaa zote zisizokidhi vigezo zetafutwa na Admin mara moja bila taarifa.
                     </div>
                     <div>
                         <b style="color:#0f172a; display:block; margin-bottom:2px;">2. Vifurushi na Malipo</b>
